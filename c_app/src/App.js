@@ -1,13 +1,17 @@
 import './App.css';
+import Icon from './Icon';
+import Username from './Username';
+import Kouzanumber from './Kouzanumber';
+
 
 function App() {
   return (
     <div className="App">
-
+      <Icon />
+      <Username />
+      <Kouzanumber />
     </div>
   );
 }
-//遅くてごめんね
-export default App;
 
-//komu
+export default App;

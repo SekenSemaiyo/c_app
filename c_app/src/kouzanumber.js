@@ -1,6 +1,6 @@
 import React from 'react';
 
-function kouzanumber() {
+function Kouzanumber() {
     return (
         <div>
             <h1>口座番号：〇〇〇〇〇〇</h1>
@@ -8,4 +8,4 @@ function kouzanumber() {
     );
 }
 
-export default kouzanumber;
+export default Kouzanumber;
