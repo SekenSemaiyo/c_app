@@ -23,5 +23,5 @@ function App() {
     </div>
   );
 }
-
+//遅くてごめんね
 export default App;
