@@ -1,9 +1,10 @@
-//こめんと
-
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import NavigateButton from './NavigateButton';
 
-function App() {
+function Home() {
   return (
     <div className="App">
       <header className="App-header">
@@ -19,8 +20,31 @@ function App() {
         >
           Learn React
         </a>
+        <NavigateButton label="Go to About" path="/about" />
       </header>
     </div>
+  );
+}
+
+function About() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>About Page</h1>
+        <NavigateButton label="Go to Home" path="/" />
+      </header>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
   );
 }
 
