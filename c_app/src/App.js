@@ -1,11 +1,12 @@
 import './App.css';
+import Icon from './Icon';
 
 function App() {
   return (
     <div className="App">
-
+      <Icon />
     </div>
   );
 }
-//遅くてごめんね
+
 export default App;
