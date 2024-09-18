@@ -6,11 +6,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import AboutPage from './Pages/AbputPage'; // AboutPage コンポーネントをインポート
 import ListPage from './Pages/ListPage';
 import SendMoneyPage from './Pages/SendMoneyPage';
-import SendComplitionPage from './Pages/SendComplitionPage';
+import SendCompletionPage from './Pages/SendCompletionPage';
 import RequestPage from './Pages/RequestPage';
-import RequestComplition from './Pages/RequestComplitionPage';
+import RequestCompletion from './Pages/RequestCompletionPage';
 import PayPage from './Pages/PayPage';
-import PaymentComplition from './Pages/PaymentComplitionPage';
+import PaymentCompletion from './Pages/PaymentCompletionPage';
 import HistoryPage from './Pages/HistoryPage';
 
 function App() {
@@ -19,14 +19,16 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<TopPage />} /> {/* トップページ */}
-          <Route path="/" element={<ListPage />} /> {/* 送金宛先一覧 */}
-          <Route path="/" element={<SendMoneyPage />} /> {/* 送金処理画面 */}
-          <Route path="/" element={<SendComplitionPage />} /> {/* 送金完了画面 */}
-          <Route path="/" element={<RequestPage />} /> {/* 請求画面 */}
-          <Route path="/" element={<RequestComplition />} /> {/* リンク作成完了画面 */}
-          <Route path="/" element={<PayPage/>} /> {/* 請求支払い画面*/}
-          <Route path="/" element={<PaymentComplition/>} /> {/* 請求支払い完了画面*/}
-          <Route path="/" element={<HistoryPage />} /> {/* 請求履歴確認画面 */}
+
+          <Route path="/list" element={<ListPage />} /> {/* 送金宛先一覧 */}
+          <Route path="/sendmoney" element={<SendMoneyPage />} /> {/* 送金処理画面 */}
+          <Route path="/sendcompletion" element={<SendCompletionPage />} /> {/* 送金完了画面 */}
+          <Route path="/request" element={<RequestPage />} /> {/* 請求画面 */}
+          <Route path="/request-completion" element={<RequestCompletion />} /> {/* リンク作成完了画面 */}
+          <Route path="/pay" element={<PayPage/>} /> {/* 請求支払い画面*/}
+          <Route path="/payment-completion" element={<PaymentCompletion/>} /> {/* 請求支払い完了画面*/}
+          <Route path="/history" element={<HistoryPage />} /> {/* 請求履歴確認画面 */}
+
         </Routes>
       </div>
     </Router>
