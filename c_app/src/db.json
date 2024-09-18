@@ -13,6 +13,13 @@
         "username": "佐藤花子",
         "accountNumber": "9876543210",
         "yokin": "50000"
+      },
+      {
+        "id": 3,
+        "icon": "./human3.png",
+        "username": "光也細田",
+        "accountNumber": "3873333210",
+        "yokin": "20000"
       }
     ]
   }
