@@ -1,9 +1,8 @@
-
+import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TopPage from './Pages/TopPage';
 import AboutPage from './Pages/AbputPage'; // AboutPage コンポーネントをインポート
-
 
 function App() {
   return (
