@@ -2,6 +2,7 @@ import './App.css';
 import Icon from './Components/Icon';
 import Username from './Components/Username';
 import AccountNumber from './Components/AccountNumber';
+import UserProfile from './UserProfile';
 
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
     <div className="App">
       <Icon />
       <Username />
-      <Kouzanumber />
+      <AccountNumber />
+      <UserProfile />
     </div>
   );
 }
