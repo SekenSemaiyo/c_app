@@ -1,4 +1,3 @@
-// src/yokin.js
 import React from "react";
 
 function Yokin() {
