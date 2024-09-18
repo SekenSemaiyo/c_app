@@ -27,7 +27,7 @@ const PayPage = () => {
       {message && (
         <p><strong>メッセージ：</strong>{decodeURIComponent(message)}</p>
       )}
-      {error && <p className="text-danger">{error}</p>}
+      {/* {error && <p className="text-danger">{error}</p>} */}
       <button className="btn btn-primary mt-4" onClick={handlePayment}>
         支払う
       </button>
