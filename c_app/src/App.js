@@ -26,7 +26,7 @@ function App() {
           <Route path="/request-completion" element={<RequestComplition />} /> {/* リンク作成完了画面 */}
           <Route path="/pay" element={<PayPage/>} /> {/* 請求支払い画面*/}
           <Route path="/payment-completion" element={<PaymentComplition/>} /> {/* 請求支払い完了画面*/}
-          <Route path="/" element={<HistoryPage />} /> {/* 請求履歴確認画面 */}
+          <Route path="/history" element={<HistoryPage />} /> {/* 請求履歴確認画面 */}
         </Routes>
       </div>
     </Router>
