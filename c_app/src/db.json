@@ -6,6 +6,7 @@
       "username": "山田太郎",
       "accountNumber": "1234567890",
       "yokin": 12000
+
     },
     {
       "id": "2",
@@ -14,5 +15,7 @@
       "accountNumber": "9876543210",
       "yokin": "50000"
     }
-  ]
+
+  ],
+  "requests": []
 }
