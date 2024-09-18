@@ -2,14 +2,14 @@
     "users": [
       {
         "id": 1,
-        "icon": "images/human1.png",
+        "icon": "./human1.png",
         "username": "山田太郎",
         "accountNumber": "1234567890",
         "yokin": "10000"
       },
       {
         "id": 2,
-        "icon": "images/human1.png",
+        "icon": "./human2.png",
         "username": "佐藤花子",
         "accountNumber": "9876543210",
         "yokin": "50000"
