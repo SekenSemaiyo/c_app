@@ -67,7 +67,7 @@ const SendMoneyPage = () => {
 
     try {
       // 送金者の残高を更新
-      await fetch(`http://localhost:3010/users?id=${senderId}`, {
+      await fetch(`http://localhost:3010/users/${senderId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const SendMoneyPage = () => {
         body: JSON.stringify({ ...sender, yokin: updatedSenderBalance.toString() }),
       });
       
-      await fetch(`http://localhost:3010/users?id=${recipientId}`, {
+      await fetch(`http://localhost:3010/users/${recipientId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
