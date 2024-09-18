@@ -1,6 +1,8 @@
 import React from 'react'
-import logo from './images/human1.png';
-import './App.css';
+
+import logo from '../images/human1.png';
+import '../App.css';
+
 
 const Icon = () => {
   return (
