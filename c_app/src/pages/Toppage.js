@@ -1,0 +1,20 @@
+import '../App.css';
+import Icon from '../Components/Icon';
+import Username from '../Components/Username';
+import Yokin from '../Components/Yokin';
+import Kouzanumber from '../Components/kouzanumber';
+import NavigateButton from '../Components/NavigateButton'; // NavigateButton コンポーネントをインポート
+
+function TopPage() {
+  return (
+    <div className="App">
+      <Icon />
+      <Username />
+      <Kouzanumber />
+      <Yokin /> {/* 預金残高を表示 */}
+      <NavigateButton label="Go to About Page" path="/about" /> {/* アバウトページへのナビゲートボタン */}
+    </div>
+  );
+}
+
+export default TopPage;
