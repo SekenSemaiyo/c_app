@@ -1,7 +1,7 @@
 import './App.css';
-import Icon from './Icon';
-import Username from './Username';
-import Kouzanumber from './Kouzanumber';
+import Icon from './Components/Icon';
+import Username from './Components/Username';
+import AccountNumber from './Components/AccountNumber';
 
 
 function App() {
