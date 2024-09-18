@@ -12,7 +12,7 @@ function TopPage() {
       <Username />
       <AccountNumber />
       <Yokin /> {/* 預金残高を表示 */}
-      <NavigateButton label="Go to About Page" path="/about" /> {/* アバウトページへのナビゲートボタン */}
+      <NavigateButton label="Go to About Page" path="/about" /> {/* アバウトページへナビゲートボタン */}
     </div>
   );
 }
