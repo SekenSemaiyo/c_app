@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // useLocationフックをインポート
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const SendMoneyPage = () => {
   const [users, setUsers] = useState([]);
   const [amount, setAmount] = useState('');
-  const [message, setMessage] = useState(''); // メッセージの状態を追加
+  const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
-  const navigate = useNavigate(); // navigateフックを使用
+  const navigate = useNavigate();
 
-  // ListPageから送信されたユーザー情報を取得
   const location = useLocation();
   const recipient = location.state?.user;
-  const senderId = 1; // 送金者のID
+  const senderId = 1;
 
-  // 初回レンダリング時にユーザーデータを取得
   useEffect(() => {
     fetch('http://localhost:3010/users')
       .then((response) => response.json())
@@ -70,7 +68,6 @@ const SendMoneyPage = () => {
     const updatedRecipientBalance = parseFloat(recipient.yokin) + transferAmount;
 
     try {
-      // 送金者の残高を更新
       await fetch(`http://localhost:3010/users/${senderId}`, {
         method: 'PUT',
         headers: {
@@ -87,7 +84,6 @@ const SendMoneyPage = () => {
         body: JSON.stringify({ ...recipient, yokin: updatedRecipientBalance.toString() }),
       });
 
-      // ローカルのユーザーデータを更新
       const updatedUsers = users.map(user => {
         if (user.id == senderId) {
           return { ...user, yokin: updatedSenderBalance.toString() };
@@ -100,12 +96,11 @@ const SendMoneyPage = () => {
 
       setUsers(updatedUsers);
       alert(`送金完了！${transferAmount}円を ${recipient.username} さんに送金しました。`);
-      setAmount(''); // フォームをリセット
-      setMessage(''); // メッセージもリセット
+      setAmount('');
+      setMessage('');
       setIsButtonEnabled(false);
 
-      // 送金完了時に送金完了ページへ自動遷移
-      navigate('/sendcompletion'); // 送金完了ページに移動
+      navigate('/sendcompletion');
 
     } catch (error) {
       console.error('Error updating user balance:', error);
@@ -114,54 +109,129 @@ const SendMoneyPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div>
-        <h1>送金フォーム</h1>
-        <div>
-          <h2>送金宛先</h2>
-          <img src={recipient.icon} alt={`${recipient.username}のアイコン`} style={{ width: '50px', height: '50px' }} />
-          <p>氏名: {recipient.username}</p>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        backgroundColor: '#f4f4f9',
+        padding: '20px',
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: '#ffffff',
+          borderRadius: '10px',
+          padding: '20px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+          maxWidth: '400px',
+          width: '100%',
+        }}
+      >
+        <h1 style={{ textAlign: 'center', color: '#333' }}>送金フォーム</h1>
+
+        <div
+          style={{
+            textAlign: 'center',
+            marginBottom: '20px',
+          }}
+        >
+          <h2 style={{ marginBottom: '10px', color: '#555' }}>送金宛先</h2>
+          <img
+            src={recipient.icon}
+            alt={`${recipient.username}のアイコン`}
+            style={{
+              width: '100px',
+              height: '100px',
+              borderRadius: '50%',
+              marginBottom: '10px',
+            }}
+          />
+          <p style={{ fontSize: '18px', color: '#333' }}>氏名: {recipient.username}</p>
         </div>
 
-        <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="amount">送金金額:</label>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ marginBottom: '20px', position: 'relative' }}>
+          <label htmlFor="amount" style={{ color: '#333' }}>
+            送金金額:
+          </label>
+          <div style={{ position: 'relative' }}>
             <input
               type="text"
               id="amount"
               value={amount}
               onChange={handleAmountChange}
               placeholder="金額を入力してください"
-              style={{ marginRight: '5px', textAlign: 'right' }}
+              style={{
+                width: '100%',
+                padding: '10px',
+                textAlign: 'left', // 左寄せに変更
+                border: '1px solid #ccc',
+                borderRadius: '5px',
+                boxSizing: 'border-box',
+              }}
             />
-            <span>円</span>
+            <span
+              style={{
+                position: 'absolute',
+                bottom: '10px',
+                right: '10px', // 「円」を右下に配置
+                color: '#555',
+                fontWeight: 'bold',
+              }}
+            >
+              円
+            </span>
           </div>
         </div>
 
-        <div style={{ marginBottom: '10px' }}>
-          <label htmlFor="message">メッセージ:</label>
+        <div style={{ marginBottom: '20px' }}>
+          <label htmlFor="message" style={{ color: '#333' }}>
+            メッセージ:
+          </label>
           <textarea
             id="message"
             value={message}
-            onChange={(e) => setMessage(e.target.value)} // メッセージの状態を更新
+            onChange={(e) => setMessage(e.target.value)}
             placeholder="メッセージを入力してください"
-            style={{ width: '100%', padding: '10px' }}
-            rows={3} // メッセージ入力を3行に制限
+            style={{
+              width: '100%',
+              padding: '10px',
+              border: '1px solid #ccc',
+              borderRadius: '5px',
+              boxSizing: 'border-box',
+              resize: 'none',
+            }}
+            rows={3}
           />
         </div>
 
-        {errorMessage && <p style={{ color: 'red', textAlign: 'center' }}>{errorMessage}</p>}
+        {errorMessage && (
+          <p style={{ color: 'red', textAlign: 'center', marginBottom: '20px' }}>
+            {errorMessage}
+          </p>
+        )}
 
         <button
           onClick={handleTransfer}
           disabled={!isButtonEnabled}
-          style={{ display: 'block', margin: '0 auto' }}
+          style={{
+            display: 'block',
+            width: '100%',
+            padding: '10px',
+            backgroundColor: isButtonEnabled ? '#007bff' : '#cccccc',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: isButtonEnabled ? 'pointer' : 'not-allowed',
+            marginBottom: '20px',
+          }}
         >
           送金する
         </button>
 
-        <div>
-          <h2>送金者の情報</h2>
+        <div style={{ textAlign: 'center', color: '#555' }}>
+          <h2 style={{ marginBottom: '10px' }}>送金者の情報</h2>
           <p>送金上限額: {maxAmount}円</p>
         </div>
       </div>
