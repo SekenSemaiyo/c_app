@@ -13,10 +13,6 @@ import PayPage from './Pages/PayPage';
 import PaymentCompletion from './Pages/PaymentCompletionPage';
 import HistoryPage from './Pages/HistoryPage';
 
-//
-import ListPage from './Pages/ListPage';
-//
-
 function App() {
   return (
     <Router>
