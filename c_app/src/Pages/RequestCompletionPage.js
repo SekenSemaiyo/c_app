@@ -1,7 +1,7 @@
 // src/pages/RequestCompletionPage.js
 
-import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React from "react";
+import { useLocation, Link } from "react-router-dom";
 
 const RequestCompletionPage = () => {
   const location = useLocation();
@@ -20,7 +20,7 @@ const RequestCompletionPage = () => {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(link);
-    alert('リンクをコピーしました。');
+    // alert("リンクをコピーしました。");
   };
 
   return (
@@ -31,14 +31,19 @@ const RequestCompletionPage = () => {
         <div className="input-group">
           <input type="text" className="form-control" value={link} readOnly />
           <div className="input-group-append">
-            <button className="btn btn-outline-secondary" onClick={handleCopyLink}>
+            <button
+              className="btn btn-danger btn-block mt-4"
+              onClick={handleCopyLink}
+            >
               コピー
             </button>
           </div>
         </div>
       </div>
-      <Link to="/toppage">
-        <button className="btn btn-primary btn-block mt-4">トップ画面に戻る</button>
+      <Link to="/toppage?userId=1">
+        <button className="btn btn-danger btn-block mt-4">
+          トップ画面に戻る
+        </button>
       </Link>
     </div>
   );
