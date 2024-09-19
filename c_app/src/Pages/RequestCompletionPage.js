@@ -37,7 +37,7 @@ const RequestCompletionPage = () => {
           </div>
         </div>
       </div>
-      <Link to="/">
+      <Link to="/toppage">
         <button className="btn btn-primary btn-block mt-4">トップ画面に戻る</button>
       </Link>
     </div>

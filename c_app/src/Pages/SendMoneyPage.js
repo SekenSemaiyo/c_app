@@ -14,7 +14,7 @@ const SendMoneyPage = () => {
   const senderId = 1; // 送金者のID
   // const location = useLocation();
   // const recipientId = location.state?.user; // リストページから受け取った受取人情報
-  const recipientId = 2; // 送金宛先のID
+  const recipientId = 3; // 送金宛先のID
 
   // 初回レンダリング時にユーザーデータを取得
   useEffect(() => {

@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TopPage from './Pages/TopPage';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-// import AboutPage from './Pages/AbputPage'; // AboutPage コンポーネントをインポート
+import Login from './Pages/Login';
 import ListPage from './Pages/ListPage';
 import SendMoneyPage from './Pages/SendMoneyPage';
 import SendCompletionPage from './Pages/SendCompletionPage';
@@ -18,8 +18,8 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<TopPage />} /> {/* トップページ */}
-
+          <Route path="/" element={<Login />} /> {/* Login */}
+          <Route path="/toppage" element={<TopPage />} /> {/* トップページ */}
           <Route path="/list" element={<ListPage />} /> {/* 送金宛先一覧 */}
           <Route path="/sendmoney" element={<SendMoneyPage />} /> {/* 送金処理画面 */}
           <Route path="/sendcompletion" element={<SendCompletionPage />} /> {/* 送金完了画面 */}

@@ -33,7 +33,7 @@ const HistoryPage = () => {
     <div className="container mt-5">
       <h2>請求履歴</h2>
 
-      <NavigateButton label="トップページに戻る" path="/" />
+      <NavigateButton label="トップページに戻る" path="/toppage" />
 
       <table className="table mt-4">
         <thead>
