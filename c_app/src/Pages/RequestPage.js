@@ -53,7 +53,7 @@ const RequestPage = () => {
     })
       .then(() => {
         // 請求リンクの生成
-        const link = `${window.location.origin}/pay?requestId=${requestId}`;
+        const link = `${window.location.origin}/pay?requestId=${requestId}&amount=${amount}&message=${encodeURIComponent(message)}`;
         navigate('/request-completion', { state: { link } });
       })
       .catch((error) => {
