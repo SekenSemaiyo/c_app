@@ -14,7 +14,11 @@ const PaymentCompletionPage = () => {
     <div style={styles.container}>
       <img src={successImage} alt="支払完了" style={styles.image} />
       <h2 style={styles.message}>支払処理が完了しました</h2>
-      <button onClick={goToTopPage} style={styles.button}>
+      <button
+        className="btn btn-danger btn-block mt-4"
+        onClick={goToTopPage}
+        style={styles.button}
+      >
         トップページに戻る
       </button>
     </div>
