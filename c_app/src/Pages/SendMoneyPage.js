@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'; // useLocationフ�
 const SendMoneyPage = () => {
   const [users, setUsers] = useState([]);
   const [amount, setAmount] = useState('');
+  const [message, setMessage] = useState(''); // メッセージの状態を追加
   const [errorMessage, setErrorMessage] = useState('');
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const navigate = useNavigate(); // navigateフックを使用
@@ -100,6 +101,7 @@ const SendMoneyPage = () => {
       setUsers(updatedUsers);
       alert(`送金完了！${transferAmount}円を ${recipient.username} さんに送金しました。`);
       setAmount(''); // フォームをリセット
+      setMessage(''); // メッセージもリセット
       setIsButtonEnabled(false);
 
       // 送金完了時に送金完了ページへ自動遷移
@@ -135,6 +137,19 @@ const SendMoneyPage = () => {
             <span>円</span>
           </div>
         </div>
+
+        <div style={{ marginBottom: '10px' }}>
+          <label htmlFor="message">メッセージ:</label>
+          <textarea
+            id="message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)} // メッセージの状態を更新
+            placeholder="メッセージを入力してください"
+            style={{ width: '100%', padding: '10px' }}
+            rows={3} // メッセージ入力を3行に制限
+          />
+        </div>
+
         {errorMessage && <p style={{ color: 'red', textAlign: 'center' }}>{errorMessage}</p>}
 
         <button
