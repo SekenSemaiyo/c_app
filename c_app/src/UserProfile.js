@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react';
 
-const UserProfile = () => {
-  const [users, setUsers] = useState([]); // 初期値を空配列に設定
+const UserProfile = ({ userId }) => { // userIdを受け取る
+  const [users, setUsers] = useState([]);
 
-  // データを取得するuseEffectフック
   useEffect(() => {
-    fetch('http://localhost:3010/users/1')
-      .then((response) => response.json())
-      .then((data) => setUsers(Array.isArray(data) ? data : [data])) // データが単一オブジェクトの場合も考慮
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+    if (userId) {
+      fetch(`http://localhost:3010/users/${userId}`) // userIdに基づいてデータを取得
+        .then((response) => response.json())
+        .then((data) => setUsers(Array.isArray(data) ? data : [data]))
+        .catch((error) => console.error('Error fetching data:', error));
+    }
+  }, [userId]);
 
   return (
     <div>
       <h1>ユーザー情報</h1>
-      {users.length > 0 ? ( // usersが存在し、かつ配列に要素があるか確認
+      {users.length > 0 ? (
         users.map((user) => (
           <div key={user.id} style={styles.container}>
-            {/* アイコンの表示 */}
             <img
               src={user.icon}
               alt={`${user.username}のアイコン`}
@@ -31,7 +31,7 @@ const UserProfile = () => {
           </div>
         ))
       ) : (
-        <p>ユーザー情報がありません。</p> // データがない場合の表示
+        <p>ユーザー情報がありません。</p>
       )}
     </div>
   );

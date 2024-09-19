@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import NavigateButton from '../Components/NavigateButton'; // NavigateButtonコンポーネントが同じフォルダにあると仮定
+import { useNavigate } from 'react-router-dom'; // useNavigateをインポート
+import NavigateButton from '../Components/NavigateButton';
 
 function Login() {
   const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // useNavigateフックを使用
 
   const handleUserIdChange = (e) => {
     setUserId(e.target.value);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handleLogin = () => {
+    navigate(`/Toppage?userId=${userId}`); // ユーザーIDをクエリパラメータとして渡す
   };
 
   return (
@@ -25,16 +26,7 @@ function Login() {
           placeholder="ユーザーIDを入力"
         />
       </div>
-      <div>
-        <label>パスワード：</label>
-        <input
-          type="password"
-          value={password}
-          onChange={handlePasswordChange}
-          placeholder="パスワードを入力"
-        />
-      </div>
-      <NavigateButton label="ログイン" path="/toppage" />
+      <button onClick={handleLogin}>ログイン</button> {/* NavigateButtonをボタンに置き換え */}
     </div>
   );
 }
