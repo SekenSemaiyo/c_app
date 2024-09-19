@@ -17,7 +17,7 @@ const ListPage = () => {
 
   // ユーザーを選択して遷移する関数
   const handleUserClick = (user) => {
-    navigate('/user-detail', { state: { user } }); // user-detailに送金画面処理の画面のURLに変更
+    navigate('/sendmoney', { state: { user } }); // user-detailに送金画面処理の画面のURLに変更
   };
 
 

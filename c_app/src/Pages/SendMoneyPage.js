@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
+// import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // useNavigateをインポート
+
+
 
 const SendMoneyPage = () => {
   const [users, setUsers] = useState([]);
   const [amount, setAmount] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const navigate = useNavigate(); // navigateフックを使用
 
   const senderId = 1; // 送金者のID
+  // const location = useLocation();
+  // const recipientId = location.state?.user; // リストページから受け取った受取人情報
   const recipientId = 2; // 送金宛先のID
 
   // 初回レンダリング時にユーザーデータを取得
@@ -96,10 +103,13 @@ const SendMoneyPage = () => {
       });
 
       setUsers(updatedUsers);
-
       alert(`送金完了！${transferAmount}円を ${recipient.username} さんに送金しました。`);
       setAmount(''); // フォームをリセット
       setIsButtonEnabled(false);
+
+      // 送金完了時に送金完了ページへ自動遷移
+      navigate('/sendcompletion'); // 送金完了ページに移動
+
     } catch (error) {
       console.error('Error updating user balance:', error);
       setErrorMessage('送金中にエラーが発生しました。');
