@@ -11,7 +11,6 @@ const SendMoneyPage = () => {
   // ListPageから送信されたユーザー情報を取得
   const location = useLocation();
   const recipient = location.state?.user;
-
   const senderId = 1; // 送金者のID
 
   // 初回レンダリング時にユーザーデータを取得
