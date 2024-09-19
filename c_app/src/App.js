@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import TopPage from './Pages/TopPage';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+// import AboutPage from './Pages/AbputPage'; // AboutPage コンポーネントをインポート
 import ListPage from './Pages/ListPage';
 import SendMoneyPage from './Pages/SendMoneyPage';
 import SendCompletionPage from './Pages/SendCompletionPage';
@@ -22,6 +23,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<TopPage />} /> {/* トップページ */}
+
           <Route path="/list" element={<ListPage />} /> {/* 送金宛先一覧 */}
           <Route path="/sendmoney" element={<SendMoneyPage />} /> {/* 送金処理画面 */}
           <Route path="/sendcompletion" element={<SendCompletionPage />} /> {/* 送金完了画面 */}
@@ -30,6 +32,7 @@ function App() {
           <Route path="/pay" element={<PayPage/>} /> {/* 請求支払い画面*/}
           <Route path="/payment-completion" element={<PaymentCompletion/>} /> {/* 請求支払い完了画面*/}
           <Route path="/history" element={<HistoryPage />} /> {/* 請求履歴確認画面 */}
+
         </Routes>
       </div>
     </Router>
