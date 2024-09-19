@@ -7,7 +7,7 @@ const PaymentCompletionPage = () => {
 
   // トップページに戻る関数
   const goToTopPage = () => {
-    navigate("/toppage"); // トップページに遷移
+    navigate("/toppage?userId=2"); // トップページに遷移
   };
 
   return (
