@@ -1,6 +1,7 @@
 // src/pages/HistoryPage.js
 
 import React, { useState, useEffect } from 'react';
+import NavigateButton from '../Components/NavigateButton'; // NavigateButtonコンポーネントをインポート
 
 const HistoryPage = () => {
   const [requests, setRequests] = useState([]);
@@ -31,6 +32,9 @@ const HistoryPage = () => {
   return (
     <div className="container mt-5">
       <h2>請求履歴</h2>
+
+      <NavigateButton label="トップページに戻る" path="/" />
+
       <table className="table mt-4">
         <thead>
           <tr>
