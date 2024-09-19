@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 const ListPage = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate(); // useNavigateフックを使用
-
 
   useEffect(() => {
     fetch('http://localhost:3010/users')
@@ -46,7 +44,6 @@ const ListPage = () => {
   );
 };
 
-
 // スタイル定義
 const styles = {
   container: {
@@ -80,6 +77,5 @@ const styles = {
     fontSize: '25px', // ここでフォントサイズを大きく変更
   },
 };
-
 
 export default ListPage;

@@ -16,36 +16,29 @@
     },
     {
       "id": "3",
-      "icon": "./human2.png",
+      "icon": "./human3.png",
       "username": "山下周一郎",
       "accountNumber": "9876543210",
       "yokin": "52000"
     },
     {
       "id": "4",
-      "icon": "./human2.png",
+      "icon": "./human4.png",
       "username": "田島青翔",
       "accountNumber": "9876543210",
       "yokin": "50000"
     },
     {
       "id": "5",
-      "icon": "./human2.png",
+      "icon": "./human5.png",
       "username": "佐藤翼",
       "accountNumber": "9876543210",
       "yokin": "50000"
     },
     {
       "id": "6",
-      "icon": "./human2.png",
+      "icon": "./human6.png",
       "username": "小村風我",
-      "accountNumber": "9876543210",
-      "yokin": "50000"
-    },
-    {
-      "id": "7",
-      "icon": "./human2.png",
-      "username": "久保海翔",
       "accountNumber": "9876543210",
       "yokin": "50000"
     }
