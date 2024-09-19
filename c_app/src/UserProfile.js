@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
-const UserProfile = () => {
-  const [users, setUsers] = useState([]); // 初期値を空配列に設定
+const UserProfile = ({ userId }) => { // userIdを受け取る
+  const [users, setUsers] = useState([]);
 
-  // データを取得するuseEffectフック
   useEffect(() => {
-    fetch('http://localhost:3010/users/1')
-      .then((response) => response.json())
-      .then((data) => setUsers(Array.isArray(data) ? data : [data])) // データが単一オブジェクトの場合も考慮
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+    if (userId) {
+      fetch(`http://localhost:3010/users/${userId}`) // userIdに基づいてデータを取得
+        .then((response) => response.json())
+        .then((data) => setUsers(Array.isArray(data) ? data : [data]))
+        .catch((error) => console.error('Error fetching data:', error));
+    }
+  }, [userId]);
 
   return (
     <div style={styles.wrapper}> {/* 余白を追加するためのラッパースタイル */}
       <h1 style={styles.title}>ユーザー情報</h1> {/* タイトルを中央寄せ */}      {users.length > 0 ? (
         users.map((user) => (
           <div key={user.id} style={styles.container}>
-            {/* アイコンの表示 */}
             <img
               src={user.icon}
               alt={`${user.username}のアイコン`}

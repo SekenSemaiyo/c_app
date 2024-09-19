@@ -3,21 +3,23 @@ import { useNavigate } from 'react-router-dom';
 
 const ListPage = () => {
   const [users, setUsers] = useState([]);
-  const navigate = useNavigate(); // useNavigateフックを使用
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:3010/users')
       .then((response) => response.json())
-      .then((data) => setUsers(data))
+      .then((data) => {
+        // user.idが1のユーザーをフィルタリングして保存
+        const filteredUsers = data.filter((user) => user.id !== 1);
+        setUsers(filteredUsers);
+      })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
-
   // ユーザーを選択して遷移する関数
   const handleUserClick = (user) => {
-    navigate('/sendmoney', { state: { user } }); // user-detailに送金画面処理の画面のURLに変更
+    navigate('/sendmoney', { state: { user } });
   };
-
 
   return (
     <div>
@@ -26,7 +28,7 @@ const ListPage = () => {
         <div
           key={user.id}
           style={styles.container}
-          onClick={() => handleUserClick(user)} // コンテナ全体がクリック可能
+          onClick={() => handleUserClick(user)}
         >
           <img
             src={user.icon}
@@ -55,8 +57,8 @@ const styles = {
     marginBottom: '16px',
     maxWidth: '500px',
     margin: 'auto',
-    cursor: 'pointer', // コンテナをクリック可能にする
-    transition: 'background-color 0.3s ease', // ホバー時の視覚的効果
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
   },
   icon: {
     width: '80px',
@@ -74,7 +76,7 @@ const styles = {
   },
   value: {
     fontWeight: 'normal',
-    fontSize: '25px', // ここでフォントサイズを大きく変更
+    fontSize: '25px',
   },
 };
 

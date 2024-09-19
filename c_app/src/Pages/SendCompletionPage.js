@@ -8,7 +8,7 @@ const TransferComplete = () => {
 
   // トップページに戻る関数
   const goToTopPage = () => {
-    navigate('/');  // ルートとしてトップページに遷移
+    navigate('/toppage');  // ルートとしてトップページに遷移
   };
 
   return (

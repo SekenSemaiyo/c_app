@@ -115,9 +115,10 @@ const RequestPage = () => {
                 </div>
                 {/* モーダルボディ */}
                 <div className="modal-body">
-                  <p>以下の内容で請求リンクを作成します。よろしいですか？</p>
+                  <p>以下の内容で請求リンクを作成します。</p>
+                  <p>よろしいですか？</p>
                   <p>
-                    <strong>請求金額：</strong>¥{Number(amount).toLocaleString()} 円
+                    <strong>請求金額：</strong>{Number(amount).toLocaleString()} 円
                   </p>
                   {message && (
                     <p>
