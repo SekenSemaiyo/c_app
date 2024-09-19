@@ -1,7 +1,7 @@
 // src/pages/PayPage.js
 
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PayPage = () => {
   const location = useLocation();
@@ -9,13 +9,13 @@ const PayPage = () => {
 
   // クエリパラメータから請求IDを取得
   const queryParams = new URLSearchParams(location.search);
-  const requestId = queryParams.get('requestId');
+  const requestId = queryParams.get("requestId");
 
   // 状態管理
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [payee, setPayee] = useState(null); // 請求者
   const [requestData, setRequestData] = useState(null); // 請求データ
-  const [payerIdInput, setPayerIdInput] = useState(''); // 支払者のID入力
+  const [payerIdInput, setPayerIdInput] = useState(""); // 支払者のID入力
   const [payer, setPayer] = useState(null); // 支払者の情報
   const [inputError, setInputError] = useState(false); // 入力エラーの状態
   const [isIdModalOpen, setIsIdModalOpen] = useState(false); // ID入力モーダルの表示状態
@@ -29,7 +29,7 @@ const PayPage = () => {
   // 請求データと請求者の情報を取得
   useEffect(() => {
     if (!requestId) {
-      setError('無効な請求IDです。');
+      setError("無効な請求IDです。");
       return;
     }
 
@@ -38,9 +38,9 @@ const PayPage = () => {
       .then((response) => {
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error('指定された請求は存在しません。');
+            throw new Error("指定された請求は存在しません。");
           } else {
-            throw new Error('サーバーエラー');
+            throw new Error("サーバーエラー");
           }
         }
         return response.json();
@@ -53,7 +53,7 @@ const PayPage = () => {
       .then((response) => response.json())
       .then((data) => setPayee(data))
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
         setError(error.message);
       });
   }, [requestId]);
@@ -91,9 +91,9 @@ const PayPage = () => {
       .then((response) => {
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error('指定された支払者は存在しません。');
+            throw new Error("指定された支払者は存在しません。");
           } else {
-            throw new Error('サーバーエラー');
+            throw new Error("サーバーエラー");
           }
         }
         return response.json();
@@ -101,16 +101,16 @@ const PayPage = () => {
       .then((data) => {
         // 請求者と同じIDの場合はエラー
         if (data.id === payee.id) {
-          setError('請求者と支払者は同じユーザーにできません。');
+          setError("請求者と支払者は同じユーザーにできません。");
           setPayer(null);
           return;
         }
         setPayer(data);
-        setError('');
+        setError("");
         setIsIdModalOpen(false); // モーダルを閉じる
       })
       .catch((error) => {
-        console.error('Error fetching payer data:', error);
+        console.error("Error fetching payer data:", error);
         setError(error.message);
         setPayer(null);
       });
@@ -119,17 +119,17 @@ const PayPage = () => {
   // 支払うボタンのハンドラ
   const handleOpenConfirmModal = () => {
     if (!payer) {
-      setError('支払者情報が正しく取得できていません。');
+      setError("支払者情報が正しく取得できていません。");
       return;
     }
 
     // 残高チェック
     if (Number(payer.yokin) < Number(requestData.amount)) {
-      setError('支払者の残高が不足しています。');
+      setError("支払者の残高が不足しています。");
       return;
     }
 
-    setError('');
+    setError("");
     setIsConfirmModalOpen(true);
   };
 
@@ -140,7 +140,7 @@ const PayPage = () => {
 
   const handlePayment = () => {
     if (!payee || !requestData || !payer) {
-      setError('データの取得に失敗しました。');
+      setError("データの取得に失敗しました。");
       return;
     }
 
@@ -148,7 +148,7 @@ const PayPage = () => {
 
     // 残高チェック
     if (Number(payer.yokin) < paymentAmount) {
-      setError('残高が不足しています。');
+      setError("残高が不足しています。");
       return;
     }
 
@@ -174,28 +174,28 @@ const PayPage = () => {
     // `json-server` に対してデータを更新するリクエストを送信
     Promise.all([
       fetch(`http://localhost:3010/users/${payer.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedPayer),
       }),
       fetch(`http://localhost:3010/users/${payee.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedPayee),
       }),
       fetch(`http://localhost:3010/requests/${requestId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedRequestData),
       }),
     ])
       .then(() => {
         // 支払い完了ページへ遷移
-        navigate('/payment-completion');
+        navigate("/payment-completion");
       })
       .catch((error) => {
-        console.error('Error updating data:', error);
-        setError('支払い処理に失敗しました。');
+        console.error("Error updating data:", error);
+        setError("支払い処理に失敗しました。");
       });
   };
 
@@ -220,7 +220,8 @@ const PayPage = () => {
         {requestId}
       </p>
       <p>
-        <strong>請求金額：</strong>{Number(requestData.amount).toLocaleString()} 円
+        <strong>請求金額：</strong>
+        {Number(requestData.amount).toLocaleString()} 円
       </p>
       {requestData.message && (
         <p>
@@ -249,7 +250,7 @@ const PayPage = () => {
 
       {/* 支払うボタン */}
       <button
-        className="btn btn-primary mt-4"
+        className="btn btn-danger btn-block mt-4"
         onClick={handleOpenConfirmModal}
         disabled={!payer}
       >
@@ -259,7 +260,11 @@ const PayPage = () => {
       {/* ID入力モーダル */}
       {isIdModalOpen && (
         <>
-          <div className="modal show" style={{ display: 'block' }} tabIndex="-1">
+          <div
+            className="modal show"
+            style={{ display: "block" }}
+            tabIndex="-1"
+          >
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content">
                 {/* モーダルヘッダー */}
@@ -271,20 +276,22 @@ const PayPage = () => {
                   <p>ユーザーのIDを入力してください：</p>
                   <input
                     type="text"
-                    className={`form-control ${inputError ? 'is-invalid' : ''}`}
+                    className={`form-control ${inputError ? "is-invalid" : ""}`}
                     value={payerIdInput}
                     onChange={handlePayerIdInputChange}
                     autoFocus
                   />
                   {inputError && (
-                    <div className="invalid-feedback">半角数字のみを入力してください。</div>
+                    <div className="invalid-feedback">
+                      半角数字のみを入力してください。
+                    </div>
                   )}
                 </div>
                 {/* モーダルフッター */}
                 <div className="modal-footer">
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn btn-danger btn-block mt-4"
                     onClick={handlePayerIdSubmit}
                     disabled={!payerIdInput || inputError}
                   >
@@ -302,13 +309,21 @@ const PayPage = () => {
       {/* 確認用モーダル */}
       {isConfirmModalOpen && (
         <>
-          <div className="modal show" style={{ display: 'block' }} tabIndex="-1">
+          <div
+            className="modal show"
+            style={{ display: "block" }}
+            tabIndex="-1"
+          >
             <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content">
                 {/* モーダルヘッダー */}
                 <div className="modal-header">
                   <h5 className="modal-title">支払い内容の確認</h5>
-                  <button type="button" className="close" onClick={handleCloseConfirmModal}>
+                  <button
+                    type="button"
+                    className="close"
+                    onClick={handleCloseConfirmModal}
+                  >
                     <span>&times;</span>
                   </button>
                 </div>
@@ -330,10 +345,10 @@ const PayPage = () => {
                   </p>
                   <p>
                     <strong>支払後残高：</strong>
-                    
                     {(
                       Number(payer.yokin) - Number(requestData.amount)
-                    ).toLocaleString()} 円
+                    ).toLocaleString()}{" "}
+                    円
                   </p>
                 </div>
                 {/* モーダルフッター */}
@@ -345,7 +360,11 @@ const PayPage = () => {
                   >
                     キャンセル
                   </button>
-                  <button type="button" className="btn btn-primary" onClick={handlePayment}>
+                  <button
+                    type="button"
+                    className="btn btn-danger btn-block mt-4"
+                    onClick={handlePayment}
+                  >
                     支払う
                   </button>
                 </div>
