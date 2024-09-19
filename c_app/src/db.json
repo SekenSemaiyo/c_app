@@ -5,14 +5,14 @@
       "icon": "./human1.png",
       "username": "佐藤宏祐",
       "accountNumber": "1234567890",
-      "yokin": 14000
+      "yokin": "12000"
     },
     {
       "id": "2",
       "icon": "./human2.png",
       "username": "久保海翔",
       "accountNumber": "9876543210",
-      "yokin": 57000
+      "yokin": "59000"
     },
     {
       "id": "3",
