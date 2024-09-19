@@ -33,12 +33,33 @@ const RequestPage = () => {
   const handleCreateLink = () => {
     setIsModalOpen(false);
 
-    // 請求リンクの生成（シンプルな例としてクエリパラメータを使用）
+    // 請求情報を保存
     const requestId = Date.now(); // 簡易的なID生成
-    const link = `${window.location.origin}/pay?requestId=${requestId}&amount=${amount}&message=${encodeURIComponent(message)}`;
+    const requestData = {
+      id: requestId,
+      amount: Number(amount),
+      message: message,
+      date: new Date().toISOString(),
+      paid: false, // 支払済みフラグ
+      payeeId: 1,  // 請求者のID（山田太郎）
+      payerId: null // 支払者のID（未払いの場合はnull）
+    };
 
-    // 状態を渡すために navigate の state オプションを使用
-    navigate('/request-completion', { state: { link } });
+    // 請求データをjson-serverに保存
+    fetch('http://localhost:3010/requests', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestData),
+    })
+      .then(() => {
+        // 請求リンクの生成
+        const link = `${window.location.origin}/pay?requestId=${requestId}&amount=${amount}&message=${encodeURIComponent(message)}`;
+        navigate('/request-completion', { state: { link } });
+      })
+      .catch((error) => {
+        console.error('Error saving request data:', error);
+        setError('請求の作成に失敗しました。');
+      });
   };
 
   // 金額入力の変更ハンドラ
