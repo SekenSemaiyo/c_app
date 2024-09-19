@@ -5,8 +5,7 @@
       "icon": "./human1.png",
       "username": "山田太郎",
       "accountNumber": "1234567890",
-      "yokin": 12000
-
+      "yokin": 55000
     },
     {
       "id": "2",
@@ -15,7 +14,34 @@
       "accountNumber": "9876543210",
       "yokin": "50000"
     }
-
   ],
-  "requests": []
+  "requests": [
+    {
+      "id": "1726646368105",
+      "amount": 3000,
+      "message": "飲み会代です",
+      "date": "2024-09-18T07:59:28.105Z",
+      "paid": true,
+      "payeeId": 1,
+      "payerId": 2
+    },
+    {
+      "id": "1726646552457",
+      "amount": 10000,
+      "message": "",
+      "date": "2024-09-18T08:02:32.457Z",
+      "paid": true,
+      "payeeId": 1,
+      "payerId": 2
+    },
+    {
+      "id": "1726706857374",
+      "amount": 20000,
+      "message": "飲み会の代金",
+      "date": "2024-09-19T00:47:37.374Z",
+      "paid": true,
+      "payeeId": 1,
+      "payerId": 2
+    }
+  ]
 }
