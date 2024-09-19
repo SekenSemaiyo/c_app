@@ -1,6 +1,18 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column; /* フレックスボックスの方向を縦に設定 */
+  align-items: center; /* 中央揃え */
+  justify-content: center;
 }
+
+button {
+  width: 200px; /* 必要に応じてボタンの幅も調整 */
+} 
+
+button:last-child {
+  margin-bottom: 0; /* 最後のボタンの下に余白を追加しない */
+}
+
 
 .App-logo {
   height: 40vmin;
