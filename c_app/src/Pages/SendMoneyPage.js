@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; // useNavigateをインポート
-
-
+import { useLocation, useNavigate } from 'react-router-dom'; // useLocationフックをインポート
 
 const SendMoneyPage = () => {
   const [users, setUsers] = useState([]);
@@ -11,10 +8,10 @@ const SendMoneyPage = () => {
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const navigate = useNavigate(); // navigateフックを使用
 
+  // ListPageから送信されたユーザー情報を取得
+  const location = useLocation();
+  const recipient = location.state?.user;
   const senderId = 1; // 送金者のID
-  // const location = useLocation();
-  // const recipientId = location.state?.user; // リストページから受け取った受取人情報
-  const recipientId = 2; // 送金宛先のID
 
   // 初回レンダリング時にユーザーデータを取得
   useEffect(() => {
@@ -28,7 +25,6 @@ const SendMoneyPage = () => {
   }, []);
 
   const sender = users.find(user => user.id == senderId);
-  const recipient = users.find(user => user.id == recipientId);
 
   if (!sender || !recipient) {
     return <div>データが正しく取得できませんでした。</div>;
@@ -82,21 +78,20 @@ const SendMoneyPage = () => {
         body: JSON.stringify({ ...sender, yokin: updatedSenderBalance.toString() }),
       });
       
-      await fetch(`http://localhost:3010/users/${recipientId}`, {
+      await fetch(`http://localhost:3010/users/${recipient.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ ...recipient, yokin: updatedRecipientBalance.toString() }),
       });
-      
 
       // ローカルのユーザーデータを更新
       const updatedUsers = users.map(user => {
         if (user.id == senderId) {
           return { ...user, yokin: updatedSenderBalance.toString() };
         }
-        if (user.id == recipientId) {
+        if (user.id == recipient.id) {
           return { ...user, yokin: updatedRecipientBalance.toString() };
         }
         return user;
