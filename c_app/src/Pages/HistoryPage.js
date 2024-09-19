@@ -33,7 +33,6 @@ const HistoryPage = () => {
     <div className="container mt-5">
       <h2>請求履歴</h2>
 
-      <NavigateButton label="トップページに戻る" path="/toppage" />
 
       <table className="table mt-4">
         <thead>
@@ -49,7 +48,7 @@ const HistoryPage = () => {
           {requests.map((request) => (
             <tr key={request.id}>
               <td>{new Date(request.date).toLocaleString()}</td>
-              <td>¥{Number(request.amount).toLocaleString()} 円</td>
+              <td>{Number(request.amount).toLocaleString()} 円</td>
               <td>{request.message}</td>
               <td>{request.paid ? '支払済み' : '未払い'}</td>
               <td>
@@ -67,6 +66,7 @@ const HistoryPage = () => {
           ))}
         </tbody>
       </table>
+      <NavigateButton label="トップページに戻る" path="/toppage" />
     </div>
   );
 };

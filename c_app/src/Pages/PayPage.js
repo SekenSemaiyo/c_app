@@ -220,7 +220,7 @@ const PayPage = () => {
         {requestId}
       </p>
       <p>
-        <strong>請求金額：</strong>¥{Number(requestData.amount).toLocaleString()} 円
+        <strong>請求金額：</strong>{Number(requestData.amount).toLocaleString()} 円
       </p>
       {requestData.message && (
         <p>
@@ -239,7 +239,7 @@ const PayPage = () => {
           </p>
           <p>
             <strong>支払者の残高：</strong>
-            ¥{Number(payer.yokin).toLocaleString()} 円
+            {Number(payer.yokin).toLocaleString()} 円
           </p>
         </div>
       )}
@@ -314,22 +314,23 @@ const PayPage = () => {
                 </div>
                 {/* モーダルボディ */}
                 <div className="modal-body">
-                  <p>以下の内容で支払いを行います。よろしいですか？</p>
+                  <p>以下の内容で支払いを行います。</p>
+                  <p>よろしいですか？</p>
                   <p>
                     <strong>支払者：</strong>
                     {payer.username}
                   </p>
                   <p>
                     <strong>支払金額：</strong>
-                    ¥{Number(requestData.amount).toLocaleString()} 円
+                    {Number(requestData.amount).toLocaleString()} 円
                   </p>
                   <p>
                     <strong>支払前残高：</strong>
-                    ¥{Number(payer.yokin).toLocaleString()} 円
+                    {Number(payer.yokin).toLocaleString()} 円
                   </p>
                   <p>
                     <strong>支払後残高：</strong>
-                    ¥
+                    
                     {(
                       Number(payer.yokin) - Number(requestData.amount)
                     ).toLocaleString()} 円
