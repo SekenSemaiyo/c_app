@@ -8,7 +8,7 @@ function NavigateButton({ label, path }) {
     navigate(path);
   };
 
-  return <button onClick={handleClick}>{label}</button>;
+  return <button className="btn btn-danger btn-block mt-4" onClick={handleClick}>{label}</button>;
 }
 
 export default NavigateButton;
