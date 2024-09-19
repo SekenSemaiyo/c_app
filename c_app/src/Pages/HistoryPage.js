@@ -66,7 +66,7 @@ const HistoryPage = () => {
           ))}
         </tbody>
       </table>
-      <NavigateButton label="トップページに戻る" path="/toppage" />
+      <NavigateButton label="トップページに戻る" path="/toppage?userId=1" />
     </div>
   );
 };
